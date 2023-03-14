@@ -1,0 +1,73 @@
+version: '3'
+services:
+  db:
+    container_name: db
+    image: mysql
+    volumes:
+      - ./mysql-dump/:/docker-entrypoint-initdb.d/
+    environment:
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: ''
+      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    ports:
+      - 3306:3306
+    expose:
+      - '3306'
+    networks:
+      - mynet
+  webapp:
+    container_name: webapp
+    build: ./webapp-service/
+    ports:
+      - 9003:9003
+    networks:
+      - mynet
+  customer:
+    container_name: customer
+    depends_on:
+      - db
+    build: ./customers-service/
+    ports:
+      - 9001:9001
+    networks:
+      - mynet
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_PORT=3306
+  employee:
+    container_name: employee
+    depends_on:
+      - db
+    build: ./employees-service/
+    ports:
+      - 9000:9000
+    networks:
+      - mynet
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_PORT=3306
+  supplier:
+    container_name: supplier
+    depends_on:
+      - db
+    build: ./suppliers-service/
+    ports:
+      - 9002:9002
+    networks:
+      - mynet
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_PORT=3306
+  gateway:
+    container_name: gateway
+    build: ./gateway-service/
+    ports:
+      - 80:80
+    networks:
+      - mynet
+    environment:
+      - HOST=host.docker.internal
+networks:
+  mynet:
+    driver: bridge
