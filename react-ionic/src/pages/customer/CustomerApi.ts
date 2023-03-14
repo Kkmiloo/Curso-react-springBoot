@@ -1,7 +1,7 @@
 import Customer from "./Customer";
 
 export async function searchCustomers() {
-    let url = 'http://localhost:8080/api'
+    let url = 'http://localhost/api'
     const res = await fetch(`${url}/customers`, {
         method:'GET',
         headers: {
@@ -12,7 +12,7 @@ export async function searchCustomers() {
 }
 
 export async function removeCustomer(id:string) {
-    let url = 'http://localhost:8080/api'
+    let url = 'http://localhost/api'
     await fetch(`${url}/customers/${id}`, {
         method:'DELETE',
         headers: {
@@ -23,7 +23,7 @@ export async function removeCustomer(id:string) {
 
 export async function saveCustomer(customer: Customer) {
 
-    let url = 'http://localhost:8080/api'
+    let url = 'http://localhost/api'
      await fetch(`${url}/customers`, {
         method:'POST',
         body: JSON.stringify(customer),
@@ -35,7 +35,7 @@ export async function saveCustomer(customer: Customer) {
 
 
 export async function searchCustomerById(id:string){
-    let url = 'http://localhost:8080/api'
+    let url = 'http://localhost/api'
     const res = await fetch(`${url}/customers/${id}`, {
         method:'GET',
         headers: {

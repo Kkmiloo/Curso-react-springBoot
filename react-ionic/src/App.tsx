@@ -45,7 +45,7 @@ const App: React.FC = () => {
           <Menu />
           <IonRouterOutlet id="main">
             <Route path="/" exact={true}>
-              <Redirect to="/page/Clientes" />
+              <Redirect to="/page/Customers" />
             </Route>
             {/*             <Route path="/page/:name" exact={true}>
               <Page />

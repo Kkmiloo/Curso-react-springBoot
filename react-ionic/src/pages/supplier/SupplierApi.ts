@@ -2,7 +2,7 @@ import Supplier from "./Supplier";
 
 export async function searchSuppliers() {
 
-    const res = await fetch('http://localhost:8080/api/suppliers',{
+    const res = await fetch('http://localhost/api/suppliers',{
         method: 'GET',
         headers :{ 'Content-Type': 'application/json'}
     })
@@ -13,7 +13,7 @@ export async function searchSuppliers() {
 
 export async function removeSupplier(id:string) {
 
-    await fetch('http://localhost:8080/api/suppliers/'+id,{
+    await fetch('http://localhost/api/suppliers/'+id,{
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json'}
     })
@@ -21,7 +21,7 @@ export async function removeSupplier(id:string) {
 
 export async function saveSupplier(supplier: Supplier) {
 
-    await fetch('http://localhost:8080/suppliers',
+    await fetch('http://localhost/suppliers',
     {
         method: 'POST',
         headers : { 'Content-Type': 'application/json'},
@@ -33,7 +33,7 @@ export async function saveSupplier(supplier: Supplier) {
 
 export async function searchSupplierById(id:string){
 
-    const res = await fetch('http://localhost:8080/api/suppliers/'+id,{
+    const res = await fetch('http://localhost/api/suppliers/'+id,{
     method: 'GET',
     headers : {
         'Content-Type': 'application/json'

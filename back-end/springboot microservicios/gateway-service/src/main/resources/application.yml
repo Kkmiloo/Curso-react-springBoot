@@ -13,23 +13,23 @@ spring:
           uri: ${internal.lb.uri}:9001
           predicates:
             - Path=/api/customers**
-          filters:
-            - RewritePath=/(?<path>.*), /$\{path}
+          # filters:
+          #   - RewritePath=/(?<path>.*), /$\{path}
         - id: employees
           uri: ${internal.lb.uri}:9000
           predicates:
             - Path=/api/employees**
-          filters:
-            - RewritePath=/(?<path>.*), /$\{path}
+          # filters:
+          #   - RewritePath=/(?<path>.*), /$\{path}
         - id: suppliers
           uri: ${internal.lb.uri}:9002
           predicates:
             - Path=/api/suppliers**
-          filters:
-            - RewritePath=/(?<path>.*), /$\{path}
+          # filters:
+          #   - RewritePath=/(?<path>.*), /$\{path}
         - id: webapp
           uri: ${internal.lb.uri}:9003
           predicates:
             - Path=/**
-          filters:
-            - RewritePath=/(?<path>.*), /$\{path}
+          # filters:
+          #   - RewritePath=/(?<path>.*), /$\{path}

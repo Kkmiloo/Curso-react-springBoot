@@ -12,6 +12,10 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     ports:
       - 3306:3306
+    healthcheck:
+            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+            timeout: 20s
+            retries: 10
     expose:
       - '3306'
     networks:
@@ -26,7 +30,9 @@ services:
   customer:
     container_name: customer
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+
     build: ./customers-service/
     ports:
       - 9001:9001
@@ -38,7 +44,8 @@ services:
   employee:
     container_name: employee
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     build: ./employees-service/
     ports:
       - 9000:9000
@@ -50,7 +57,8 @@ services:
   supplier:
     container_name: supplier
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     build: ./suppliers-service/
     ports:
       - 9002:9002

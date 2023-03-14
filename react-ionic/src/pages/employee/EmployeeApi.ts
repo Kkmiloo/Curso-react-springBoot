@@ -3,7 +3,7 @@ import Employee from "./Employee";
 
 export async function searchEmployees() {
 
-    const res = await fetch('http://localhost:8080/api/employees',{
+    const res = await fetch('http://localhost/api/employees',{
         method: 'GET',
         headers :{ 'Content-Type': 'application/json'}
     })
@@ -14,7 +14,7 @@ export async function searchEmployees() {
 
 export async function removeEmployee(id:string) {
 
-    await fetch('http://localhost:8080/api/employees/'+id,{
+    await fetch('http://localhost/api/employees/'+id,{
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json'}
     })
@@ -22,7 +22,7 @@ export async function removeEmployee(id:string) {
 
 export async function saveEmployee(employee: Employee) {
 
-    await fetch('http://localhost:8080/employees',
+    await fetch('http://localhost/employees',
     {
         method: 'POST',
         headers : { 'Content-Type': 'application/json'},
@@ -34,7 +34,7 @@ export async function saveEmployee(employee: Employee) {
 
 export async function searchEmployeeById(id:string){
 
-    const res = await fetch('http://localhost:8080/api/employees/'+id,{
+    const res = await fetch('http://localhost/api/employees/'+id,{
     method: 'GET',
     headers : {
         'Content-Type': 'application/json'
